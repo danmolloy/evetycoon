@@ -1,0 +1,20 @@
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Build Cost</th>
+    <th>Sell Price</th>
+    <th>Profit/run</th>
+    <th>Profit/hr</th>
+  </tr>
+
+  <% @data_rows.each do |row| %>
+    <tr>
+      <td><%= number_to_human(row['name'], precision:2, units: {unit: "isk", thousand: "k", million: "M", billion: "B"}) %></td>
+      <td><%= number_to_human(row['build_cost'], precision:2, units: {unit: "isk", thousand: "k", million: "M", billion: "B"}) %></td>
+      <td><%= number_to_human(row['sell_price'], precision:2, units: {unit: "isk", thousand: "k", million: "M", billion: "B"}) %></td>
+      <td><%= number_to_human(row['profit'], precision:2, units: {unit: "isk", thousand: "k", million: "M", billion: "B"}) %></td>
+      <td><%= number_to_human(row['hourly_profit'], precision:2, units: {unit: "isk", thousand: "k", million: "M", billion: "B"}) %></td>
+    </tr>
+  <% end %>
+
+</table>
