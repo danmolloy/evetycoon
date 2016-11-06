@@ -1,19 +1,30 @@
 <table>
   <tr>
     <th>Name</th>
-    <th>Build Cost</th>
-    <th>Sell Price</th>
-    <th>Profit/run</th>
-    <th>Profit/hr</th>
+    <th>Build</th>
+    <th>Sell</th>
+    <th>$/run</th>
+    <th>$/hr</th>
+    <th>Sales/Wk</th>
+    <th>$/Wk</th>
+    <th>Line Use</th>
+    <th>Line Use %</th>
+    <th>$/Wk/Prodhr</th>
+
   </tr>
 
   <% @data_rows.each do |row| %>
     <tr>
-      <td><%= number_to_human(row['name'], precision:2, units: {unit: "isk", thousand: "k", million: "M", billion: "B"}) %></td>
+      <td><%= row['name'] %></td>
       <td><%= number_to_human(row['build_cost'], precision:2, units: {unit: "isk", thousand: "k", million: "M", billion: "B"}) %></td>
       <td><%= number_to_human(row['sell_price'], precision:2, units: {unit: "isk", thousand: "k", million: "M", billion: "B"}) %></td>
       <td><%= number_to_human(row['profit'], precision:2, units: {unit: "isk", thousand: "k", million: "M", billion: "B"}) %></td>
       <td><%= number_to_human(row['hourly_profit'], precision:2, units: {unit: "isk", thousand: "k", million: "M", billion: "B"}) %></td>
+      <td><%= number_to_human(row['expected_weekly_sales'], precision:4, units: {unit: "", thousand: "k", million: "M", billion: "B"}) %></td>
+      <td><%= number_to_human(row['expected_weekly_profit'], precision:3, units: {unit: "isk", thousand: "k", million: "M", billion: "B"}) %></td>
+      <td><%= number_to_human(row['production_line_usage_hours'], precision:4, units: {unit: "hrs"}) %></td>
+      <td><%= number_to_human(row['production_line_usage_percent'], precision:4, units: {unit: "%"}) %></td>
+      <td><%= number_to_human(row['weekly_profit_per_production_hour'], precision:4, units: {unit: "isk", thousand: "k", million: "M", billion: "B"}) %></td>
     </tr>
   <% end %>
 

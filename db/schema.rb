@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161030171455) do
+ActiveRecord::Schema.define(version: 20161101151234) do
 
   create_table "blueprints", force: :cascade do |t|
     t.integer "item_id"
@@ -37,10 +37,11 @@ ActiveRecord::Schema.define(version: 20161030171455) do
     t.float    "basePrice"
     t.boolean  "published"
     t.integer  "marketGroupID"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
     t.integer  "metaGroupID"
     t.string   "metaGroupName"
+    t.integer  "expected_weekly_sales", limit: 8
   end
 
   create_table "prices", force: :cascade do |t|
