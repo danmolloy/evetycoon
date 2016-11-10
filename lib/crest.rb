@@ -4,8 +4,8 @@ module CREST
     tries = 3
     begin
       tries -= 1
-      response = RestClient.get url, headers: {'Character: ' => 'Joar Mendar',
-                                    'Email: ' => 'danieljmolloy1@gmail.com'}
+      response = RestClient.get url, headers: {'Character: ' => 'Woofsie',
+                                    'Email: ' => 'woofsie@gmail.com'}
 
       if headers
         response
@@ -56,6 +56,18 @@ module CREST
        0
     else
       (sell_volumes.reduce(:+)/sell_volumes.count).round
+    end
+  end
+
+  def self.get_orders(typeid, region:10000002, type: 'sell', filtered: true)
+    raw = get_relative("/market/#{region}/orders/#{type}/?type=https://crest-tq.eveonline.com/inventory/types/#{typeid}/")['items'].sort{|a, b| a['price'] <=> b['price']}
+    if filtered
+      hub_stations = [60003760, 60008494, 60004588, 60011866, 60005686, 60011740]
+      raw.select do |order|
+        hub_stations.include?(order['location']['id'])
+      end
+    else
+      raw
     end
   end
 

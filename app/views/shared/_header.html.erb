@@ -1,0 +1,11 @@
+<div id="header">
+  <a id="header_logo" href="/">
+    <div id="header_logo_text"><span id="home_link">Home</span></div>
+  </a>
+  <div id="tabs">
+    <a href="/blueprints"><div id="blueprints_tab" class="tab">Blueprints</div></a>
+  </div>
+  <%= form_tag("/prices", method: "post") do %>
+    <%= submit_tag("Update prices") %>
+  <% end %>
+</div>
