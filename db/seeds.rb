@@ -101,6 +101,28 @@ def add_meta_name_to_items
   end
 end
 
+def import_region_names
+  path = Rails.root.join('db', 'static', 'map', 'mapRegions.csv')
+  CSV.foreach(path, headers: true) do |row|
+    Region.create(id: row['regionID'],
+                  name: row['regionName']
+                )
+    puts row['regionName']
+  end
+end
+
+def import_systems
+  path = Rails.root.join('db', 'static', 'map', 'mapSolarSystems.csv')
+  CSV.foreach(path, headers: true) do |row|
+    System.create(id: row['solarSystemID'],
+                  region_id: row['regionID'],
+                  name: row['solarSystemName'],
+                  security: row['security']
+                )
+    puts row['solarSystemName']
+  end
+end
+
 #import_items
 #import_recipies
 #import_blueprints
@@ -108,3 +130,5 @@ end
 #add_production_limit_to_blueprints
 #add_meta_id_to_items
 #add_meta_name_to_items
+#import_region_names
+import_systems
