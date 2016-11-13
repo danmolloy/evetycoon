@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161112132521) do
+ActiveRecord::Schema.define(version: 20161113141655) do
 
   create_table "blueprints", force: :cascade do |t|
     t.integer "item_id"
@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(version: 20161112132521) do
 
   create_table "items", force: :cascade do |t|
     t.integer  "groupID"
-    t.string   "typeName"
+    t.string   "name"
     t.float    "volume"
     t.integer  "portionSize"
     t.float    "basePrice"
@@ -42,6 +42,15 @@ ActiveRecord::Schema.define(version: 20161112132521) do
     t.integer  "metaGroupID"
     t.string   "metaGroupName"
     t.integer  "expected_weekly_sales", limit: 8
+    t.integer  "categoryID"
+    t.string   "groupName"
+    t.string   "categoryName"
+    t.string   "marketGroupName"
+    t.integer  "parentTypeID"
+    t.float    "packagedVolume"
+    t.integer  "productionQuantity"
+    t.integer  "productionTime"
+    t.integer  "maxProductionLimit"
   end
 
   create_table "prices", force: :cascade do |t|
@@ -58,6 +67,14 @@ ActiveRecord::Schema.define(version: 20161112132521) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "stations", force: :cascade do |t|
+    t.integer  "system_id"
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["system_id"], name: "index_stations_on_system_id"
   end
 
   create_table "systems", force: :cascade do |t|
